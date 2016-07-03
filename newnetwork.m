@@ -1,9 +1,9 @@
-%function [NetworkSys] = newnetwork(dom_node, int_node,firm_node,no_network)
-
-dom_node=6;     %test data
-int_node=2;     %test data
-firm_node=3;     %test data
-no_network=1;   %test data
+function [networkSys] = newnetwork(dom_node, int_node,firm_node,no_network)
+% 
+% dom_node=6;     %test data
+% int_node=2;     %test data
+% firm_node=3;     %test data
+% no_network=1;   %test data
 
 
     % dom_node=no of domestic bank nodes
