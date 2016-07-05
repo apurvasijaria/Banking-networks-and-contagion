@@ -35,7 +35,7 @@ xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
  iter=0;
  while 1 % start iterations
  iter=iter+1;
- disp(’---------------’); disp([’iter=’,num2str(iter)]);
+ disp('---------------'); disp(['iter=',num2str(iter)]);
  %
  % Calculate p(x)
  p=exp(-real(fin(:,1:N))*real(lambda)+imag(fin(:,1:N))*imag(lambda));
@@ -47,8 +47,8 @@ xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
  end
  %plot([real(G(1:N)),real(mu),imag(G(1:N)),imag(mu)])
  %
- entr(iter)=lambda’*G(1:N); % Calculate the entropy
- disp([’Entropy=’,num2str(entr(iter))])
+ entr(iter)=lambda'*G(1:N); % Calculate the entropy
+ disp(['Entropy=',num2str(entr(iter))])
  %
  gnk=zeros(N,N); % Calculate gnk
  for n=1:N % Matrix gnk is a Hermitian

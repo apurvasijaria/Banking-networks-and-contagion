@@ -5,4 +5,4 @@
  x=[xmin:dx:xmax]';
  mu=[0.1,.3,0.1,.15]'; % define the mu values
  [lambda,p,entr]=me_dens2(mu,x);
- disp([mu;lambda;entr(length(entr))]’)
+ disp([mu;lambda;entr(length(entr))]')

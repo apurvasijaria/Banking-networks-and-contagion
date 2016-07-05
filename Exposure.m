@@ -25,8 +25,9 @@ bnkdata=csvread(data.csv);
 network=zeros(tot_n); %for the links of the interbank network
 weigh=zeros(tot_n);  %for the exposure distribution in inter bank network
 network= newnetwork(dom_n,int_n,firm_n,1); %create new network
- weigh = ExposureDis(dom_n,int_n,firm_n,countries,bnkdata); %initialise the exposure ditribution
- dist= network.*weigh; 
+weigh = ExposureDis(dom_n,int_n,firm_n,countries,bnkdata); 
+%initialise the exposure ditribution
+dist= network.*weigh; 
 %-----------------------------------------------------------------------
 %plot exposure on x axis and Probabilty on y axis 
 %graph of emperical distribution

@@ -1,4 +1,4 @@
- function fin=fin1_x(x);
+ function fin=fin1_x(x)
  % This is the external function which calculates
  % the fin(x) in the special case of the Gamma distribution.
  % This is to be used with ME_dens1.
