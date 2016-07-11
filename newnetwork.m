@@ -14,6 +14,8 @@ function [networkSys] = newnetwork(dom_node, int_node,firm_node,no_network)
 tot_node= dom_node+int_node+firm_node;
 networkSys = zeros(tot_node,tot_node,no_network);
 
+beta=1; %For random network in internvational bank network
+meannodes=4; %mean degree for internatioanl bank network
 
 
     weights = rand(tot_node);
@@ -33,7 +35,7 @@ networkSys = zeros(tot_node,tot_node,no_network);
  %international bank to domestic banks forming a scale free network
  for j = 1:no_network
             start = 1-eye(Q);
-            network = zeros(dom_node,int_node);
+            network = zeros(dom_node,dom_node);
             network(1:Q,1:Q) = start;
             if Q==1
                 network(1:2,1:2) = 1-eye(2);
@@ -56,18 +58,18 @@ networkSys = zeros(tot_node,tot_node,no_network);
                 end
             end
             networkSys(:,:,j) = network.*weights;
- networkSys(int_node+dom_node+1:end,1:dom_node)=0;  %Nolink from internaltional banks and firms to domestic banks
- networkSys(dom_node+int_node+1:end,dom_node+int_node+1:end)=0;  %no firm inter-lending
- h = WattsStrogatz(int_node,4,1); %for interbank network in internatioanl banks having small world property
+            
+ networkSys(int_node+dom_node+1:end,1:end)=0; 
+ %Nolink from firms to domestic banks,internaltional banks and other firms
+ 
+ h = small_world(int_node,meannodes,beta);
  %1st argument= no of international nodes, 2nd srgument= mean degree/2. 
  %third argument for random graph
  networkSys(dom_node+1:dom_node+int_node,dom_node+1:dom_node+int_node)=h;
- 
 %  Plotting the nodes using gplot
-% k = tot_node;
-% coord=[cos((1:k).*(2*pi./k)),sin((1:k).*(2*pi./k))]; % points on a circle for nodes
-% gplot(networkSys(:,:),coord,'-*')
-% axis square
+% k = tot_node; coord=[cos((1:k).*(2*pi./k)),sin((1:k).*(2*pi./k))]; %
+% points on a circle for nodes gplot(networkSys(:,:),coord,'-*') axis
+% square
  end
  
  
