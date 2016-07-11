@@ -18,9 +18,13 @@
  % Author: A. Mohammad-Djafari
  % Date : 10-01-1991
  %
- mu=mu(:);mu=[1;mu]; % add mu(0)=1
- x=x(:); lx=length(x); % x axis
-xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
+ mu=mu(:);
+ mu=[1;mu]; % add mu(0)=1
+ x=x(:); 
+ lx=length(x); % x axis
+ xmin=x(1); 
+ xmax=x(lx);
+ dx=x(2)-x(1);
  if(nargin == 2) % initialize LAMBDA
  lambda=zeros(size(mu)); % This produces a uniform
  lambda(1)=log(xmax-xmin); % distribution.
@@ -35,7 +39,8 @@ xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
  iter=0;
  while 1 % start iterations
  iter=iter+1;
- disp('---------------'); disp(['iter=',num2str(iter)]);
+ disp('---------------'); 
+ disp(['iter=',num2str(iter)]);
  %
  % Calculate p(x)
  p=exp(-real(fin(:,1:N))*real(lambda)+imag(fin(:,1:N))*imag(lambda));
@@ -66,7 +71,7 @@ xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
  delta=gnk\v; % Calculate delta
  lambda=lambda+delta; % Calculate lambda
  eps=1e-3; % Stopping rules
- if(abs(delta)./abs(lambda)<eps), break, end
+ if(abs(delta)/abs(lambda)<eps), break, end
  if(iter>2)
  if(abs((entr(iter)-entr(iter-1))/entr(iter))<eps),break, end
  end
@@ -75,5 +80,5 @@ xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
  p=exp(-real(fin(:,1:N))*real(lambda)+imag(fin(:,1:N))*imag(lambda));
  plot(x,p); % plot it
  entr=entr(:);
- disp(’----- END -------’)
+ disp('----- END -------')
  end

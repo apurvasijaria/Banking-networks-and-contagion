@@ -22,14 +22,16 @@ function [lambda,p,entr]=me_dens2(mu,x,lambda0)
  mu=[1;mu]; % add mu(0)=1
  x=x(:);
  lx=length(x); % x axis
- xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
+ xmin=x(1);
+ xmax=x(lx); 
+ dx=x(2)-x(1);
  %
  if(nargin == 2) % initialize LAMBDA
  lambda=zeros(size(mu)); % This produces a uniform
  lambda(1)=log(xmax-xmin); % distribution.
  else
  lambda=lambda0(:);
-end
+ end
  N=length(lambda);
  %
  M=2*N-1; % Calcul de fin(x)=x.^n
@@ -39,7 +41,7 @@ end
  fin(:,n)=x.*fin(:,n-1);
  end
  %
-iter=0;
+ iter=0;
  while 1 % start iterations
  iter=iter+1;
  disp('---------------'); disp(['iter=',num2str(iter)]);

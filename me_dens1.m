@@ -14,14 +14,13 @@
  % P is a table containing the resulting pdf p(x).
  % ENTR is a table containing the entropy values at each
  % iteration.
- %
- % Author: A. Mohammad-Djafari
- % Date : 10-01-1991
- %
- mu=mu(:); mu=[1;mu]; % add mu(0)=1
- x=x(:); lx=length(x); % x axis
- xmin=x(1); xmax=x(lx); dx=x(2)-x(1);
- %
+ mu=mu(:);
+ mu=[1;mu]; % add mu(0)=1
+ x=x(:); 
+ lx=length(x); % x axis
+ xmin=x(1);
+ xmax=x(lx);
+ dx=x(2)-x(1);
  if(nargin == 2) % initialize LAMBDA
  lambda=zeros(size(mu)); % This produces a uniform
  lambda(1)=log(xmax-xmin); % distribution.
@@ -35,8 +34,9 @@
 iter=0;
  while 1 % start iterations
  iter=iter+1;
- disp(’---------------’); disp([’iter=’,num2str(iter)]);
- %
+ disp('---------------'); 
+ disp(['iter=',num2str(iter)]);
+ 
  p=exp(-(fin*lambda)); % Calculate p(x)
  plot(x,p); % plot it
  %
@@ -44,12 +44,12 @@ iter=0;
  for n=1:N
  G(n)=dx*sum(fin(:,n).*p);
  end
- %
- entr(iter)=lambda’*G(1:N); % Calculate the entropy value
- disp([’Entropy=’,num2str(entr(iter))])
+ 
+ entr(iter)=(lambda')*G(1:N); % Calculate the entropy value
+ disp(['Entropy=',num2str(entr(iter))])
  %
  gnk=zeros(N,N); % Calculate gnk
- gnk(1,:)=-G’; gnk(:,1)=-G; % first line and first column
+ gnk(1,:)=-G'; gnk(:,1)=-G; % first line and first column
  for i=2:N % lower triangle part of the
  for j=2:i % matrix G
  gnk(i,j)=-dx*sum(fin(:,j).*fin(:,i).*p);
@@ -74,4 +74,5 @@ gnk(i,j)=gnk(j,i);
  p=exp(-(fin*lambda)); % Calculate the final p(x)
 plot(x,p); % plot it
  entr=entr(:);
- disp(’----- END -------’)
+ disp('----- END -------')
+ end
