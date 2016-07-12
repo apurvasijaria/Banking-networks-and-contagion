@@ -1,11 +1,10 @@
+function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_node,firm_node)
+
 %.........................................................................
 %  Assumptions- No price impact of asset firesales
 %               No aggregate macroeconomic shocks to firms
 %dom_node,int_node,firm_node= number of nodes for the institution
 %.........................................................................
-
-
-function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_node,firm_node)
 
 %------------------------------------------------------------------------%
 % domdom_network= network of interbank lending for domestic bank
@@ -41,6 +40,12 @@ domfirm_borrowing = sum(domfirm_network)';
 intfirm_lending = sum(intfirm_network,2);
 intfirm_borrowing = sum(intfirm_network)';
 
+lending = domdom_lending+intint_lending+intdom_lending+domint_lending+domfirm_lending+intfirm_lending;
+borrowing = (domdom_borrowing+intint_borrowing+intdom_borrowing+domint_borrowing+domfirm_borrowing+intfirm_borrowing)';
+assets = lending/f;
+liquidAssets = fLambda*assets;
+seniorliability = (leverage-1)/(leverage*f)*lending - borrowing;
+liabilities = borrowing + seniorliability;
 
 % the return on investment and junior debt are both calculated for a given
 % shock S
