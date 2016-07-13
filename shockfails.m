@@ -62,6 +62,10 @@ phi=6.25e-5;
 %   networkType = 'scalefree','random','complete','ring'
 %   alphaAll = parameter to change, based on networkType
 %   Nshocks = number of simultaneous shocks
+n=30;
+kstar=4;
+shockSize=0;
+endCondition = 10^-5;
 
 Navg = 1000;
 isWeighted = 1;
