@@ -1,4 +1,4 @@
-function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_node,firm_node)
+function [ repaymentAll, Nsurvive] = fails( network_m,S,endCondition,dom_node,int_node,firm_node)
 
 %.........................................................................
 %  Assumptions- No price impact of asset firesales
@@ -14,49 +14,61 @@ function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_
 % domfirm_network= network of lending for domestic banks to firms
 % intfirm_network= network of lending for international bank to firms
 %------------------------------------------------------------------------%
- domdom_network= network_m(1:dom_node,1:dom_node);
- intint_network= network_m(dom_node+1:dom_node+int_node,dom_node+1:dom_node+int_node);
- intdom_network= network_m(1:dom_node,dom_node+1:dom_node+int_node);
- domint_network= network_m(dom_node+1:dom_node+int_node,1:dom_node);
- domfirm_network= network_m(dom_node+int_node+1:end,1:dom_node);
- intfirm_network= network_m(dom_node+int_node+1:end,dom_node+1:dom_node+int_node);
- 
- 
- domdom_lending = sum(domdom_network,2);
- domdom_borrowing = sum(domdom_network)';
- 
+domdom_network= network_m(1:dom_node,1:dom_node);
+intint_network= network_m(dom_node+1:dom_node+int_node,dom_node+1:dom_node+int_node);
+intdom_network= network_m(1:dom_node,dom_node+1:dom_node+int_node);
+domint_network= network_m(dom_node+1:dom_node+int_node,1:dom_node);
+domfirm_network= network_m(dom_node+int_node+1:end,1:dom_node);
+intfirm_network= network_m(dom_node+int_node+1:end,dom_node+1:dom_node+int_node);
 
- intint_lending = sum(intint_network,2);
- intint_borrowing = sum(intint_network)';
 
- intdom_lending = sum(intdom_network,2);
- intdom_borrowing = sum(intdom_network)';
- 
- domint_lending = sum(domint_network,2);
- domint_borrowing = sum(domint_network)';
- 
- domfirm_lending = sum(domfirm_network,2);
- domfirm_borrowing = sum(domfirm_network)';
- 
- intfirm_lending = sum(intfirm_network,2);
- intfirm_borrowing = sum(intfirm_network)';
- lending=sum(network_m,2);
- borrowing=sum(network_m)';
- 
- dom_lend=domdom_lending+intdom_lending;
- int_lend=intint_lending+domint_lending;
- dom_bor=domdom_borrowing+domint_borrowing;
- int_bor=intint_borrowing+intdom_borrowing;
- 
- 
+domdom_lending = sum(domdom_network,2);
+domdom_borrowing = sum(domdom_network)';
+intint_lending = sum(intint_network,2);
+intint_borrowing = sum(intint_network)';
+intdom_lending = sum(intdom_network,2);
+intdom_borrowing = sum(intdom_network)';
+domint_lending = sum(domint_network,2);
+domint_borrowing = sum(domint_network)';
+domfirm_lending = sum(domfirm_network,2);
+domfirm_borrowing = sum(domfirm_network)';
+intfirm_lending = sum(intfirm_network,2);
+intfirm_borrowing = sum(intfirm_network)';
+lending=sum(network_m,2);
+borrowing=sum(network_m)';
+
+dom_lend=domdom_lending+intdom_lending;
+int_lend=intint_lending+domint_lending;
+dom_bor=domdom_borrowing+domint_borrowing;
+int_bor=intint_borrowing+intdom_borrowing;
+
+%------------------------------------
+% lending= interbank assests (10%)
+% loan to firms=80%
+% equities=10%
+%-----------------------------------
+%------------------------------------------------------------------------%
+% Parameters of the system, can change if you want
+%   R = investment interest rate
+%   r = interbank interest rate
+%   f = asset fraction that is interbank loans
+%   flambda = asset fraction that is liquid assets (assume no illiquid)
+%   leverage = leverage of the bank = assets/capital
+%   shockSize = shock size, currently only looking at full shock
+%   endCondition = point at which deem fixed point is reached
+%   kstar = critical degree
+%------------------------------------------------------------------------%
+
+f=0.9;
+fLambda=1-f;
 assets = lending/f;
 liquidAssets = fLambda*assets;
-seniorliability = (leverage-1)/(leverage*f)*lending - borrowing;
 liabilities = borrowing;
-
+R=1.05;
+r=1.04;
 % the return on investment and junior debt are both calculated for a given
 % shock S
-actualROI = (R*S-1).*max(liabilities,borrowing);
+actualROI = (R*S-1).*(borrowing);
 juniorDebt = r*borrowing;
 
 %------------------------------------------------------------------------%
@@ -90,7 +102,7 @@ end
 % positive net worth after all collapsing banks have collapsed, or as not
 % having lent or borrowed anything, (ie, not part of the network)
 %------------------------------------------------------------------------%
-netWorth = actualROI + liquidAssets - seniorliability + network_m*r*repayFrac - borrowing*r.*repayFrac;
+netWorth = actualROI + liquidAssets  + network_m*r*repayFrac - borrowing*r.*repayFrac;
 Nsurvive = sum(netWorth>0|(lending==0&borrowing==0));
 repaymentAll = repayFrac.*borrowing;
 

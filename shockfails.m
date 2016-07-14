@@ -1,16 +1,16 @@
 
 %individual bank data is unavailable
 
- dom_node=6;     %test data
- int_node=2;     %test data
- firm_node=3;     %test data
- no_network=1;   %test data
- 
+dom_node=6;     %test data
+int_node=2;     %test data
+firm_node=3;     %test data
+no_network=1;   %test data
+
 % dom_loan=loan holding on domestic banks on average (in mils);
 % dom_eq=equity holding on domestic banks on average (in mils)
 % int_loan=loan holding on international banks on average (in mils)
 % int_eq=equity holding on international banks on average (in mils)
-% 
+%
 % dom_int_loan=loan* from domestic banks to internatioanl banks
 % dom_int_eq=equity* from domestic banks to internatioanl banks
 % int_dom_loan=loan* from international banks to domestic banks
@@ -46,7 +46,7 @@ lgd=0.35;
 % firesales=Trigger rule for firesales; trigger level of 50 amounts to
 % setting the parameter = 0.5 lambda=Liquidity discount parameter,we adopt
 % a value for lambda consistent with a more significant price impact.
-% psi=Macroeconomic feedback parameter, phi=we (somewhat arbitrarily) set 
+% psi=Macroeconomic feedback parameter, phi=we (somewhat arbitrarily) set
 % = 6.25 × 10?5 as a working hypothesis.
 
 
@@ -62,7 +62,7 @@ phi=6.25e-5;
 %   networkType = 'scalefree','random','complete','ring'
 %   alphaAll = parameter to change, based on networkType
 %   Nshocks = number of simultaneous shocks
-n=30;
+n=dom_node+int_node+firm_node;
 kstar=4;
 shockSize=0;
 endCondition = 10^-5;
@@ -101,9 +101,8 @@ for k = 1:length(alphaAll)
         s = randi(Nshocks,1);
         S = ones(n,1);
         S(s) = shockSize;
-        
         %%% find fixed point and resulting parameters of networks
-        [xij,Nsurvive] = fails(network,endCondition,dom_node,int_node,firm_node);
+        [xij,Nsurvive] = fails(network,S,endCondition,dom_node,int_node,firm_node);
         survived(k,m) = Nsurvive;
         meanDegree(k,m) = mean(degree);
     end
