@@ -6,14 +6,14 @@ function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_
 %dom_node,int_node,firm_node= number of nodes for the institution
 %.........................................................................
 
--%------------------------------------------------------------------------%
- -% domdom_network= network of interbank lending for domestic bank
- -% intint_network= network of interbank lending for international bank
- -% intdom_network= network of interbank lending for domestic to international bank
- -% domint_network= network of interbank lending for international to domestic bank
- -% domfirm_network= network of lending for domestic banks to firms
- -% intfirm_network= network of lending for international bank to firms
- -%------------------------------------------------------------------------%
+%------------------------------------------------------------------------%
+% domdom_network= network of interbank lending for domestic bank
+% intint_network= network of interbank lending for international bank
+% intdom_network= network of interbank lending for domestic to international bank
+% domint_network= network of interbank lending for international to domestic bank
+% domfirm_network= network of lending for domestic banks to firms
+% intfirm_network= network of lending for international bank to firms
+%------------------------------------------------------------------------%
  domdom_network= network_m(1:dom_node,1:dom_node);
  intint_network= network_m(dom_node+1:dom_node+int_node,dom_node+1:dom_node+int_node);
  intdom_network= network_m(1:dom_node,dom_node+1:dom_node+int_node);
@@ -25,9 +25,10 @@ function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_
  domdom_lending = sum(domdom_network,2);
  domdom_borrowing = sum(domdom_network)';
  
+
  intint_lending = sum(intint_network,2);
  intint_borrowing = sum(intint_network)';
- 
+
  intdom_lending = sum(intdom_network,2);
  intdom_borrowing = sum(intdom_network)';
  
@@ -42,11 +43,12 @@ function [ repaymentAll, Nsurvive] = fails( network_m,endCondition,dom_node,int_
  lending=sum(network_m,2);
  borrowing=sum(network_m)';
  
- lending = domdom_lending+intint_lending+intdom_lending+domint_lending+domfirm_lending+intfirm_lending;
- borrowing = (domdom_borrowing+intint_borrowing+intdom_borrowing+domint_borrowing+domfirm_borrowing+intfirm_borrowing)';
-
+ dom_lend=domdom_lending+intdom_lending;
+ int_lend=intint_lending+domint_lending;
+ dom_bor=domdom_borrowing+domint_borrowing;
+ int_bor=intint_borrowing+intdom_borrowing;
  
-
+ 
 assets = lending/f;
 liquidAssets = fLambda*assets;
 seniorliability = (leverage-1)/(leverage*f)*lending - borrowing;
