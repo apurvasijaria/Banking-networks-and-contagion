@@ -43,7 +43,7 @@ for i = [1:n]
     end
     A(:,i) = col;
     Net(:,i)=col;
-   
+    
 end
 
 % A is not yet symmetric: to speed things up, an edge connecting i and j, i < j
@@ -51,7 +51,7 @@ end
 
 T = triu(A);
 A = T+T';
-Net(:,:)=A(:,:)
-network= Net .*weights
+Net(:,:)=A(:,:);
+network= Net .*weights;
 
 end % small_world(...)

@@ -14,33 +14,33 @@ function [ repaymentAll, Nsurvive] = fails( network_m,S,endCondition,dom_node,in
 % domfirm_network= network of lending for domestic banks to firms
 % intfirm_network= network of lending for international bank to firms
 %------------------------------------------------------------------------%
-domdom_network= network_m(1:dom_node,1:dom_node);
-intint_network= network_m(dom_node+1:dom_node+int_node,dom_node+1:dom_node+int_node);
-intdom_network= network_m(1:dom_node,dom_node+1:dom_node+int_node);
-domint_network= network_m(dom_node+1:dom_node+int_node,1:dom_node);
-domfirm_network= network_m(dom_node+int_node+1:end,1:dom_node);
-intfirm_network= network_m(dom_node+int_node+1:end,dom_node+1:dom_node+int_node);
-
-
-domdom_lending = sum(domdom_network,2);
-domdom_borrowing = sum(domdom_network)';
-intint_lending = sum(intint_network,2);
-intint_borrowing = sum(intint_network)';
-intdom_lending = sum(intdom_network,2);
-intdom_borrowing = sum(intdom_network)';
-domint_lending = sum(domint_network,2);
-domint_borrowing = sum(domint_network)';
-domfirm_lending = sum(domfirm_network,2);
-domfirm_borrowing = sum(domfirm_network)';
-intfirm_lending = sum(intfirm_network,2);
-intfirm_borrowing = sum(intfirm_network)';
+% domdom_network= network_m(1:dom_node,1:dom_node);
+% intint_network= network_m(dom_node+1:dom_node+int_node,dom_node+1:dom_node+int_node);
+% intdom_network= network_m(1:dom_node,dom_node+1:dom_node+int_node);
+% domint_network= network_m(dom_node+1:dom_node+int_node,1:dom_node);
+% domfirm_network= network_m(dom_node+int_node+1:end,1:dom_node);
+% intfirm_network= network_m(dom_node+int_node+1:end,dom_node+1:dom_node+int_node);
+% 
+% 
+% domdom_lending = sum(domdom_network,2);
+% domdom_borrowing = sum(domdom_network)';
+% intint_lending = sum(intint_network,2);
+% intint_borrowing = sum(intint_network)';
+% intdom_lending = sum(intdom_network,2);
+% intdom_borrowing = sum(intdom_network)';
+% domint_lending = sum(domint_network,2);
+% domint_borrowing = sum(domint_network)';
+% domfirm_lending = sum(domfirm_network,2);
+% domfirm_borrowing = sum(domfirm_network)';
+% intfirm_lending = sum(intfirm_network,2);
+% intfirm_borrowing = sum(intfirm_network)';
 lending=sum(network_m,2);
 borrowing=sum(network_m)';
-
-dom_lend=domdom_lending+intdom_lending;
-int_lend=intint_lending+domint_lending;
-dom_bor=domdom_borrowing+domint_borrowing;
-int_bor=intint_borrowing+intdom_borrowing;
+% 
+% dom_lend=domdom_lending+intdom_lending;
+% int_lend=intint_lending+domint_lending;
+% dom_bor=domdom_borrowing+domint_borrowing;
+% int_bor=intint_borrowing+intdom_borrowing;
 
 %------------------------------------
 % lending= interbank assests (10%)
