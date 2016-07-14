@@ -16,5 +16,7 @@ Connections b/w banks- To obtain the maximum entropy
 distribution for the number of links that a bank has against other banks, using
 the results of Bianconi (2009) that for uncorrelated networks, the maximum entropy
 distribution for the number of links is a Poisson distribution. Uncorrelated
-networks are those where the degrees of nodes are not correlated. for international banks Watts and Strogatz(1998) small world algorithm is adopted
+networks are those where the degrees of nodes are not correlated. for international banks Watts and Strogatz(1998) small world algorithm
+is adopted
 
+Some codes like fails.m and shockfails.m have codes for Prof.Agam's codes, they are yet to be modified.
