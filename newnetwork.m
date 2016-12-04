@@ -8,20 +8,19 @@
 tot_node= dom_node+int_node+firm_node;
 networkSys = zeros(tot_node,tot_node,no_network);
 
-beta=1; %For random network in internvational bank network
-meannodes=4; %mean degree for internatioanl bank network
+% For probability of loan/euity or liabilty for international banks
+beta=1; 
+% mean degree for internatioanl bank network
+meannodes=4; 
+% Cij and Dij can be 0 or 1 only hence uniform weight
 weights = 1;
-% for creatinf domestic bank network; complete form of network
+% for creating domestic bank network; complete form of network
 
-% %  for i = 1:no_network
-% %  network = weights(1:dom_node,1:dom_node).*(1-eye(dom_node));
-% %  end
-% %  networkSys(1:dom_node,1:dom_node)=network;
 Q=dom_node;
 % for creating international node links
-%Since international and domestic banks are link are unidirectional nodes
-%represented as (dom_node+1,:) will be zero to have no link from
-%international bank to domestic banks forming a scale free network
+% Since international and domestic banks are link are unidirectional nodes
+% represented as (dom_node+1,:) will be zero to have no link from
+% international bank to domestic banks forming a scale free network
 for j = 1:no_network
     start = 1-eye(Q);
     network = zeros(dom_node,dom_node);
@@ -55,13 +54,7 @@ for j = 1:no_network
     % points on a circle for nodes gplot(networkSys(:,:),coord,'-*') axis
     % square
     
-    dom_total=400;
-    int_total=150;
-    eq=0.1;
-    loantofirms=0.8;
-    interbankassets=0.1;
-    networkBS(1:dom_node,1:dom_node)=dom_total*eq
-    
+       
 end
 
 
