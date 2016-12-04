@@ -1,22 +1,16 @@
-function [networkSys] = newnetwork(dom_node, int_node,firm_node,no_network)
-%
-% dom_node=6;     %test data
-% int_node=2;     %test data
-% firm_node=3;     %test data
-% no_network=1;   %test data
+ function [networkSys] = newnetwork(dom_node, int_node,firm_node,no_network)
 
-a=1;
-% dom_node=no of domestic bank nodes
-% int_node= no of international bank nodes
-% firm_node=no of firm node
-% tot_node= total no of nodes including domestic, internation, and firm
+% dom_node = number of domestic bank nodes
+% int_node = number of international bank nodes
+% firm_node = number of firm node
+% tot_node = total number of nodes including domestic,international,and firm
 
 tot_node= dom_node+int_node+firm_node;
 networkSys = zeros(tot_node,tot_node,no_network);
 
 beta=1; %For random network in internvational bank network
 meannodes=4; %mean degree for internatioanl bank network
-weights = rand(tot_node);
+weights = 1;
 % for creatinf domestic bank network; complete form of network
 
 % %  for i = 1:no_network
@@ -60,6 +54,14 @@ for j = 1:no_network
     % k = tot_node; coord=[cos((1:k).*(2*pi./k)),sin((1:k).*(2*pi./k))]; %
     % points on a circle for nodes gplot(networkSys(:,:),coord,'-*') axis
     % square
+    
+    dom_total=400;
+    int_total=150;
+    eq=0.1;
+    loantofirms=0.8;
+    interbankassets=0.1;
+    networkBS(1:dom_node,1:dom_node)=dom_total*eq
+    
 end
 
 

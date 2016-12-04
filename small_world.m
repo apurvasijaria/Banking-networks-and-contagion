@@ -23,7 +23,7 @@ columns = mod(columns-1, n) + 1;
 B = sparse(rows, columns, ones(n*k, 1));
 A = sparse([], [], [], n, n);
 
-weights = rand(n); %for random probability distribution
+weights = 1; %for random probability distribution
 
 % With probability beta rewire an edge avoiding loops and link duplication.
 % Until step i, only the columns 1:i are generated making implicit use of A's
