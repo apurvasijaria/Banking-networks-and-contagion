@@ -17,6 +17,7 @@
 % % arrangements, the statistics for sizes of loan and equity holdingSis governed by 18
 % % different probability distributions.
 function [A,Q,L] = balancesheets (dom_node, int_node,firm_node,no_network)
+tot_node= dom_node+int_node+firm_node;
 A=zeros(tot_node);
 Q=zeros(tot_node);
 L=zeros(tot_node);
@@ -30,3 +31,4 @@ dij=newnetwork(dom_node, int_node,firm_node,no_network)
 Tij=Exposure();
 Q=dij.*Tij;
 % For liability network
+
