@@ -5,7 +5,7 @@
  xmin=0.0001; xmax=1; dx=0.01; % define the x axis
  x=[xmin:dx:xmax]';
  mu=[0.3,-1.5]'; % define the mu values
- [lambda,p,entr]=me_dens1(mu,x,0);
+ [lambda,p,entr]=me_dens1(mu,x);
  alpha=-lambda(3); 
  beta=lambda(2);
  m=(1+alpha)/beta; 

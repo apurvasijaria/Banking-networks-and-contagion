@@ -31,7 +31,7 @@
  %
  fin=fin1_x(x); % fin1_x(x) is an external
  % % function which provides fin(x).
-iter=0;
+ iter=0;
  while 1 % start iterations
  iter=iter+1;
  disp('---------------'); 
