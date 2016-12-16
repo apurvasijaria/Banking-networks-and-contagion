@@ -30,7 +30,8 @@ A=cij.*Sij;
 dij=newnetwork(dom_node, int_node,firm_node,no_network)
 Tij=Exposure(dom_node, int_node,firm_node);
 Q=dij.*Tij;
-A
-Q
 % For liability network
+eij=newnetwork(dom_node, int_node,firm_node,no_network)
+Uij=Exposure(dom_node, int_node,firm_node);
+L=eij.*Uij;
 

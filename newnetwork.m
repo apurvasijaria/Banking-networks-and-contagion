@@ -54,7 +54,7 @@ for j = 1:no_network
     % points on a circle for nodes gplot(networkSys(:,:),coord,'-*') axis
     % square
     
-       
+    %digraph(networkSys,'upper')
 end
 
 

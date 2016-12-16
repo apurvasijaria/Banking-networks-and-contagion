@@ -75,4 +75,5 @@ gnk(i,j)=gnk(j,i);
 plot(x,p); % plot it
  entr=entr(:);
  disp('----- END -------')
+ gnk
  end
