@@ -3,8 +3,11 @@
  % This script shows how to use the function ME_DENS1
  % in the case of the Gamma distribution. (see Example 1.)
  function [k]= ME1(tot_node)
- xmin=0.0001; xmax=1; dx=0.01; % define the x axis
- x=[xmin:dx:xmax]';
+ % define the x axis
+ dx=0.01
+ xmin=0.0001
+ xmax=1
+ x=[xmin:dx:xmax];
  mu=[0.3,-1.5]';
 %  mu=[0.28]';% define the mu values
  [lambda,p,entr]=me_dens1(mu,x);

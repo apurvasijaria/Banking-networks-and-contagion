@@ -24,14 +24,13 @@ L=zeros(tot_node);
 % Calls the function newnetwork for cij and dij
 % For equity network
 cij=newnetwork(dom_node, int_node,firm_node,no_network)
-Sij=Exposure(dom_node, int_node,firm_node);
+Sij=Exposure(dom_node, int_node,firm_node,cij);
 A=cij.*Sij;
-% For Loans network
+%  For Loans network
 dij=newnetwork(dom_node, int_node,firm_node,no_network)
-Tij=Exposure(dom_node, int_node,firm_node);
+Tij=Exposure(dom_node, int_node,firm_node,dij);
 Q=dij.*Tij;
-% For liability network
-eij=newnetwork(dom_node, int_node,firm_node,no_network)
-Uij=Exposure(dom_node, int_node,firm_node);
-L=eij.*Uij;
+% For liability network call the funtion fail 
+fail(Sij,Tij,cij,dij,dom_node,int_node,firm_node)
+
 
