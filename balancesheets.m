@@ -30,7 +30,12 @@ A=cij.*Sij;
 dij=newnetwork(dom_node, int_node,firm_node,no_network)
 Tij=Exposure(dom_node, int_node,firm_node,dij);
 Q=dij.*Tij;
+
+%importing external liability and level of safe assets [govt. bonds] from
+%excel
+Bi = importdata(bonds.xls);
+Di = importdata(extLia.xls);
 % For liability network call the funtion fail 
-fail(Sij,Tij,cij,dij,dom_node,int_node,firm_node)
+fail(Sij,Tij,cij,dij,dom_node,int_node,firm_node,Bi,Di);
 
 
