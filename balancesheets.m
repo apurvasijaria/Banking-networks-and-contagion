@@ -16,7 +16,14 @@
 % % and firm j. Considering all possible combinations of agent types, and hence lending
 % % arrangements, the statistics for sizes of loan and equity holdingSis governed by 18
 % % different probability distributions.
-function [A,Q,L] = balancesheets (dom_node, int_node,firm_node,no_network)
+rng shuffle
+
+%test data
+dom_node=3;
+int_node=3;
+firm_node=3;
+no_network=1;
+
 tot_node= dom_node+int_node+firm_node;
 A=zeros(tot_node);
 Q=zeros(tot_node);
