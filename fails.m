@@ -32,8 +32,11 @@ Afirm=sum(SFD,2)+sum(SFI,2)+sum(SFF,2)+sum(TDF,2)+Bi(1+dom_node+int_node:tot_nod
 Ai=vertcat(Adom,Aint,Afirm);
 S=sum(Sij);
 %pi = (0,1);
-pi=0.5; %to be changed
+pi=0.04; %to be changed
 Ki=pi.*Ai;
+alpha=0.5;
+lambda=0.57;
+phi=6.25*10^-5
 Li=S(1:dom_node+int_node)'+Ki+Di;
 
 
